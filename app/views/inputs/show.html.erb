@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @input.task_id %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @input.question %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @input.level %>
+</p>
+
+<%= link_to 'Edit', edit_input_path(@input) %> |
+<%= link_to 'Back', inputs_path %>
