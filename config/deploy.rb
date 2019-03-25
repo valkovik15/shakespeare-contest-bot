@@ -1,5 +1,5 @@
 # Change these
-server '185.143.172.248', port: 22, roles: [:web, :app, :db], primary: true
+
 
 set :repo_url,        'git@github.com:valkovik15/shakespeare-contest-bot.git'
 set :application,     'shakespeare'
