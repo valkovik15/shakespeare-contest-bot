@@ -10,7 +10,16 @@ class QuizController < ApplicationController
     when 1
       answer = $level1[question_]
       if answer.nil?
-        answer=$level1[question_[0..-1]]
+        answer = $level1[question_ + '.']
+        if answer.nil?
+          answer = $level1[question_ + ',']
+        end
+        if answer.nil?
+          answer = $level1[question_ + ';']
+        end
+        if answer.nil?
+          answer = $level1[question_ + ';']
+        end
       end
     end
     parameters = {
