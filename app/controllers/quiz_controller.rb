@@ -18,7 +18,13 @@ class QuizController < ApplicationController
           answer = $level1[question_ + ';']
         end
         if answer.nil?
-          answer = $level1[question_ + ';']
+          answer = $level1[question_ + ':']
+        end
+        if answer.nil?
+          answer = $level1[question_ + '!']
+        end
+        if answer.nil?
+          answer = $level1[question_ + '?']
         end
       end
     end
