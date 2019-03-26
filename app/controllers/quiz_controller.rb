@@ -30,7 +30,7 @@ class QuizController < ApplicationController
           last_chance=rem_punct question_
           answer = $level1[last_chance]
           if answer.nil?
-            answer = $level1[last_chance.trim]
+            answer = $level1[last_chance.strip]
           end
         end
       end
@@ -43,7 +43,6 @@ class QuizController < ApplicationController
 
     Net::HTTP.post_form(uri, parameters)
     Input.new('task_id' => task_id_, 'question' => question_, 'level' => level_).save
-    render plain: parameters
   end
   def rem_punct str
     str.gsub(/[^A-Za-z0-9\s]/i, '')
