@@ -35,6 +35,13 @@ class QuizController < ApplicationController
         end
       end
     end
+  when 2
+    last_chance=rem_punct question_
+    answer = $level2[last_chance]
+    if answer.nil?
+      answer = $level2[last_chance.strip]
+    end
+  end
     parameters = {
         answer: answer,
         token: 'd77f89c45e2089bf3a721acf0c9edfd2',
