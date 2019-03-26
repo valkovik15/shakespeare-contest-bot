@@ -41,7 +41,7 @@ class QuizController < ApplicationController
         answer = $level2.get(last_chance.strip)
       end
     when 3
-      strings = question_.split('\n')
+      strings = question_.split("\n")
       strings[0] = rem_punct strings[0]
       strings[1] = rem_punct strings[1]
       answer1 = $level2.get(strings[0])
@@ -54,7 +54,7 @@ class QuizController < ApplicationController
       end
       answer = answer1 + ',' + answer2
     when 4
-      strings = question_.split('\n')
+      strings = question_.split("\n")
       strings[0] = rem_punct strings[0]
       strings[1] = rem_punct strings[1]
       strings[2] = rem_punct strings[2]
