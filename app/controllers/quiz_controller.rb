@@ -48,7 +48,8 @@ class QuizController < ApplicationController
     }
 
     resp = Net::HTTP.post_form(uri, parameters)
-    Input.new('task_id' => task_id_, 'question' => question_ + ' ' + resp, 'level' => level_).save
+    str=question_ + ' ' + resp.to_s
+    Input.new('task_id' => task_id_, 'question' => str, 'level' => level_).save
   end
 
   def rem_punct str
