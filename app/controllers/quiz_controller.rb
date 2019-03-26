@@ -53,7 +53,7 @@ class QuizController < ApplicationController
         answer2 = $level2.get(strings[1].strip)
       end
       answer = answer1 + ',' + answer2
-    when 3
+    when 4
       strings = question_.split('\n')
       strings[0] = rem_punct strings[0]
       strings[1] = rem_punct strings[1]
