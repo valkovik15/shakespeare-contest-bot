@@ -8,49 +8,49 @@ class QuizController < ApplicationController
     question_ = params['question']
     case level_
     when 1
-      answer = $level1[question_]
+      answer = $level1.get(question_)
       if answer.nil?
-        answer = $level1[question_ + '.']
+        answer = $level1.get(question_ + '.')
         if answer.nil?
-          answer = $level1[question_ + ',']
+          answer = $level1.get(question_ + ',')
         end
         if answer.nil?
-          answer = $level1[question_ + ';']
+          answer = $level1.get(question_ + ';')
         end
         if answer.nil?
-          answer = $level1[question_ + ':']
+          answer = $level1.get(question_ + ':')
         end
         if answer.nil?
-          answer = $level1[question_ + '!']
+          answer = $level1.get(question_ + '!')
         end
         if answer.nil?
-          answer = $level1[question_ + '?']
+          answer = $level1.get(question_ + '?')
         end
         if answer.nil?
-          last_chance=rem_punct question_
-          answer = $level1[last_chance]
+          last_chance = rem_punct question_
+          answer = $level1.get(last_chance)
           if answer.nil?
-            answer = $level1[last_chance.strip]
+            answer = $levelq.get(last_chance.strip)
           end
         end
       end
+    when 2
+      last_chance = rem_punct question_
+      answer = $level2.get(last_chance)
+      if answer.nil?
+        answer = $level2.get(last_chance.strip)
+      end
     end
-  when 2
-    last_chance=rem_punct question_
-    answer = $level2[last_chance]
-    if answer.nil?
-      answer = $level2[last_chance.strip]
-    end
-  end
     parameters = {
         answer: answer,
         token: 'd77f89c45e2089bf3a721acf0c9edfd2',
         task_id: task_id_
     }
 
-    Net::HTTP.post_form(uri, parameters)
-    Input.new('task_id' => task_id_, 'question' => question_, 'level' => level_).save
+    resp = Net::HTTP.post_form(uri, parameters)
+    Input.new('task_id' => task_id_, 'question' => question_ + ' ' + resp, 'level' => level_).save
   end
+
   def rem_punct str
     str.gsub(/[^A-Za-z0-9\s]/i, '')
   end
