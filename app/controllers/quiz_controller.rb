@@ -48,7 +48,7 @@ class QuizController < ApplicationController
     }
 
     resp = Net::HTTP.post_form(uri, parameters)
-    str=question_ + ' ' + resp.to_s
+    str=question_+' '+resp.body
     Input.new('task_id' => task_id_, 'question' => str, 'level' => level_).save
   end
 
