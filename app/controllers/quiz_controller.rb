@@ -40,6 +40,37 @@ class QuizController < ApplicationController
       if answer.nil?
         answer = $level2.get(last_chance.strip)
       end
+    when 3
+      strings = question_.split('\n')
+      strings[0] = rem_punct strings[0]
+      strings[1] = rem_punct strings[1]
+      answer1 = $level2.get(strings[0])
+      if answer1.nil?
+        answer1 = $level2.get(strings[0].strip)
+      end
+      answer2 = $level2.get(strings[1])
+      if answer2.nil?
+        answer2 = $level2.get(strings[1].strip)
+      end
+      answer = answer1 + ',' + answer2
+    when 3
+      strings = question_.split('\n')
+      strings[0] = rem_punct strings[0]
+      strings[1] = rem_punct strings[1]
+      strings[2] = rem_punct strings[2]
+      answer1 = $level2.get(strings[0])
+      if answer1.nil?
+        answer1 = $level2.get(strings[0].strip)
+      end
+      answer2 = $level2.get(strings[1])
+      if answer2.nil?
+        answer2 = $level2.get(strings[1].strip)
+      end
+      answer3 = $level2.get(strings[2])
+      if answer3.nil?
+        answer3 = $level2.get(strings[2].strip)
+      end
+      answer = answer1 + ',' + answer2 + ',' + answer3
     end
     parameters = {
         answer: answer,
@@ -48,7 +79,7 @@ class QuizController < ApplicationController
     }
 
     resp = Net::HTTP.post_form(uri, parameters)
-    str=question_+' '+resp.body
+    str = question_ + ' ' + resp.body
     Input.new('task_id' => task_id_, 'question' => str, 'level' => level_).save
     render plain: answer
   end
