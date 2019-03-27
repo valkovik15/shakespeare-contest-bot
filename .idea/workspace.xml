@@ -62,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/config/initializers/my_init.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="127" lean-forward="true" selection-start-line="2" selection-start-column="127" selection-end-line="2" selection-end-column="127" />
+              <caret line="2" column="129" selection-start-line="2" selection-start-column="129" selection-end-line="2" selection-end-column="129" />
             </state>
           </provider>
         </entry>
@@ -391,12 +391,12 @@
       <workItem from="1553610029924" duration="588000" />
       <workItem from="1553620749610" duration="26000" />
       <workItem from="1553630439012" duration="4217000" />
-      <workItem from="1553636858326" duration="1579000" />
+      <workItem from="1553636858326" duration="2038000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32273000" />
+    <option name="totallyTimeSpent" value="32732000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -583,7 +583,7 @@
     <entry file="file://$PROJECT_DIR$/config/initializers/my_init.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="127" lean-forward="true" selection-start-line="2" selection-start-column="127" selection-end-line="2" selection-end-column="127" />
+          <caret line="2" column="129" selection-start-line="2" selection-start-column="129" selection-end-line="2" selection-end-column="129" />
         </state>
       </provider>
     </entry>
