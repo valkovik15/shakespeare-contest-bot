@@ -1,3 +1,5 @@
 REDIS: 'Your_Username'
 MAIL_PASSWORD: 'Your_Username'
 RAILS_MASTER_KEY: '5afd7391f8e06bda5406220dabfe162c'
+DB_HOST: 'SG-Gr-19799.servers.mongodirector.com'
+DB_PASSWORD: 'rW82ZUv2ZRs9q0dgJGZ1RCqRK4fy5xqb'

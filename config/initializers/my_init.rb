@@ -1,3 +1,3 @@
 require 'redis'
-$level1 = Redis.new(host: "SG-Gr-19799.servers.mongodirector.com", port: 6379, password: "rW82ZUv2ZRs9q0dgJGZ1RCqRK4fy5xqb", db:1)
-$level2 = Redis.new(host: "SG-Gr-19799.servers.mongodirector.com", port: 6379, password: "rW82ZUv2ZRs9q0dgJGZ1RCqRK4fy5xqb", db:2)
+$level1 = Redis.new(host: ENV['DB_HOST'], port: 6379, password: ENV['DB_PASSWORD'], db:1)
+$level2 = Redis.new(host: ENV['DB_HOST'], port: 6379, password: ENV['DB_PASSWORD'], db:2)
