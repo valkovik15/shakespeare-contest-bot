@@ -1,6 +1,46 @@
 class QuizController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+  def level_1 question_
+    answer = $level1.get(question_)
+    if answer.nil?
+      answer = $level1.get(question_ + '.')
+    else
+      return answer
+    end
+    if answer.nil?
+      answer = $level1.get(question_ + '.')
+    else
+      return answer
+    end
+    if answer.nil?
+      answer = $level1.get(question_ + '!')
+    else
+      return answer
+    end
+    if answer.nil?
+      answer = $level1.get(question_ + '?')
+    else
+      return answer
+    end
+    if answer.nil?
+      answer = $level1.get(question_ + ';')
+    else
+      return answer
+    end
+    if answer.nil?
+      answer = $level1.get(question_ + ':')
+    else
+      return answer
+    end
+    if answer.nil?
+      last_chance = rem_punct question_
+      answer = $level1.get(last_chance)
+    else return answer
+    end
+    $level1.get(last_chance.strip)
+  end
+
   def index
     uri = URI("https://shakespeare-contest.rubyroidlabs.com/quiz")
     level_ = params['level'].to_i
@@ -8,32 +48,7 @@ class QuizController < ApplicationController
     question_ = params['question']
     case level_
     when 1
-      answer = $level1.get(question_)
-      if answer.nil?
-        answer = $level1.get(question_ + '.')
-        if answer.nil?
-          answer = $level1.get(question_ + ',')
-        end
-        if answer.nil?
-          answer = $level1.get(question_ + ';')
-        end
-        if answer.nil?
-          answer = $level1.get(question_ + ':')
-        end
-        if answer.nil?
-          answer = $level1.get(question_ + '!')
-        end
-        if answer.nil?
-          answer = $level1.get(question_ + '?')
-        end
-        if answer.nil?
-          last_chance = rem_punct question_
-          answer = $level1.get(last_chance)
-          if answer.nil?
-            answer = $levelq.get(last_chance.strip)
-          end
-        end
-      end
+      answer = level_1 question_
     when 2
       last_chance = rem_punct question_
       answer = $level2.get(last_chance)
