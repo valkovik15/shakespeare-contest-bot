@@ -36,9 +36,38 @@ class QuizController < ApplicationController
     if answer.nil?
       last_chance = rem_punct question_
       answer = $level1.get(last_chance)
-    else return answer
+    else
+      return answer
     end
     $level1.get(last_chance.strip)
+  end
+
+  def level_5 quest
+    quest = rem_punct quest
+    words = quest.split
+    words.each_with_index do |word, key|
+      words[key] = 'WORD'
+      ans = $level2.get words.join(' ')
+      if (ans.nil?)
+        words[index] = word
+      else
+        return ans
+      end
+    end
+  end
+
+  def level_8 question_
+    str = rem_punct question_.strip
+    words_sorted = str.chars.sort(&:casecmp)
+    words_sorted.each_with_index do |word, index|
+      words[index] = '.'
+      answer = $level3.keys(words_sorted.join)
+      if !answer.nil? && answer.length.positive?
+        return answer[0]
+      end
+
+      words[index] = word
+    end
   end
 
   def index
@@ -86,6 +115,17 @@ class QuizController < ApplicationController
         answer3 = $level2.get(strings[2].strip)
       end
       answer = answer1 + ',' + answer2 + ',' + answer3
+    when 5
+      answer = level_5 question_
+
+    when 6, 7
+      str = rem_punct question_.strip
+      str_sorted = str.chars.sort(&:casecmp).join
+      answer = $level3.get str_sorted
+    when 8
+      answer = level_8 question_
+
+
     end
     parameters = {
         answer: answer,
