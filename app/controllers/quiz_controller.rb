@@ -42,7 +42,7 @@ class QuizController < ApplicationController
     $level1.get(last_chance.strip)
   end
 
-  def level_5 quest
+  def level_5(quest)
     quest = rem_punct quest
     words = quest.split
     words.each_with_index do |word, key|
