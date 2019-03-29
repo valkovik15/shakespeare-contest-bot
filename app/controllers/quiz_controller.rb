@@ -51,7 +51,7 @@ class QuizController < ApplicationController
       if (ans.nil?)
         words[index] = word
       else
-        return ans
+        return ans+','+word
       end
     end
   end
