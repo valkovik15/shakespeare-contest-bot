@@ -54,6 +54,7 @@ class QuizController < ApplicationController
         return ans + ',' + word
       end
     end
+    ''
   end
 
   def level_8 question_
