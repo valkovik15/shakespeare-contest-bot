@@ -48,10 +48,10 @@ class QuizController < ApplicationController
     words.each_with_index do |word, key|
       words[key] = 'WORD'
       ans = $level2.get words.join(' ')
-      if (ans.nil?)
+      if ans.nil?
         words[index] = word
       else
-        return ans+','+word
+        return ans + ',' + word
       end
     end
   end
