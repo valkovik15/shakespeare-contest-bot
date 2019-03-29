@@ -49,7 +49,7 @@ class QuizController < ApplicationController
       words[key] = 'WORD'
       ans = $level2.get words.join(' ')
       if ans.nil?
-        words[index] = word
+        words[key] = word
       else
         return ans + ',' + word
       end
