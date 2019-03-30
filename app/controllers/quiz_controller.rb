@@ -63,14 +63,24 @@ class QuizController < ApplicationController
     letters = [*('a'..'z'), *('A'..'Z')]
     words_sorted = str.chars.sort(&:casecmp)
     words_sorted.each_with_index do |word, index___|
-      if lastc != word
+      queries = []
+      if lastc != word and letters.include? word
+        words_sorted.delete_at index___
         letters.each do |replacement|
-          words_sorted[index___] = replacement
-          temp = words_sorted.sort(&:casecmp).join
-          ans = $level3.get(temp)
-          return ans unless ans.nil?
+          insert = words_sorted.bsearch_index replacement
+          words_sorted.insert insert, replacement
+          queries.push(words_sorted.join)
+          words_sorted.delete_at replacement
+
         end
       end
+      res = $redis3.pipelined do
+        queries.each do |x|
+          $redis3.get(x)
+        end
+      end
+      return res[0] if res.compact.length.positive?
+
       lastc = word
       words_sorted[index___] = word
     end
