@@ -79,10 +79,12 @@ class QuizController < ApplicationController
   end
 
   def index
+
     uri = URI("https://shakespeare-contest.rubyroidlabs.com/quiz")
     level_ = params['level'].to_i
     task_id_ = params['id']
     question_ = params['question']
+    Input.new('task_id' => task_id_, 'question' => question_, 'level' => level_).save
     case level_
     when 1
       answer = level_1 question_
