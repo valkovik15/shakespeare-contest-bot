@@ -62,17 +62,17 @@ class QuizController < ApplicationController
     lastc = 'z'
     letters = [*('a'..'z'), *('A'..'Z')]
     words_sorted = str.chars.sort(&:casecmp)
-    words_sorted.each_with_index do |word, index|
+    words_sorted.each_with_index do |word, index___|
       if lastc != word
         letters.each do |replacement|
-          words_sorted[index] = replacement
+          words_sorted[index___] = replacement
           temp = words_sorted.sort(&:casecmp).join
           ans = $level3.get(temp)
           return ans unless ans.nil?
         end
       end
       lastc = word
-      words_sorted[index] = word
+      words_sorted[index___] = word
 
     end
     ''
