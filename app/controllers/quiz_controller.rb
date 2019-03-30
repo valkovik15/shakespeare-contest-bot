@@ -69,6 +69,7 @@ class QuizController < ApplicationController
 
       words_sorted[index] = word
     end
+    ''
   end
 
   def index
