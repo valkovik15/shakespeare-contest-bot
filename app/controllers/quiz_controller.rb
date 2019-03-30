@@ -59,16 +59,16 @@ class QuizController < ApplicationController
 
   def level_8 (question_)
     str = rem_punct question_.strip
-    log=""
+    log = ""
     words_sorted = str.chars.sort(&:casecmp)
     words_sorted.each_with_index do |word, index|
       words_sorted[index] = '.'
-      _curs_, answ=$level3.scan(0, :match=>words_sorted.join.to_s)
-      log+=(answ.inspect+' ')
-      return answ[0]+log unless answ.nil?
+      _curs_, answ = $level3.scan(0, :match => words_sorted.join.to_s)
+      log += (answ.inspect + ' ')
+      return answ[0] + log unless answ.nil?
       words_sorted[index] = word
     end
-    ''
+    log
   end
 
   def index
@@ -125,7 +125,7 @@ class QuizController < ApplicationController
       answer = $level3.get str_sorted
     when 8
       answer = level_8 question_
-      
+
 
     end
     parameters = {
