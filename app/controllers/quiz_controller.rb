@@ -73,7 +73,6 @@ class QuizController < ApplicationController
       end
       lastc = word
       words_sorted[index___] = word
-
     end
     ''
   end
