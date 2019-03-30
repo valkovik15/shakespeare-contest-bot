@@ -64,7 +64,7 @@ class QuizController < ApplicationController
       words_sorted[index] = '.'
       answer = $level2.keys(words_sorted.join)
       if !answer.nil? && answer.length.positive?
-        return answer[0]
+        return answer
       end
 
       words_sorted[index] = word
