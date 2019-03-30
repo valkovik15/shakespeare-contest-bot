@@ -63,8 +63,7 @@ class QuizController < ApplicationController
     words_sorted.each_with_index do |word, index|
       words_sorted[index] = '.'
       _curs_, answ=$level3.scan(0, :match=>words_sorted.join.to_s)
-      return answ[0] if !answ.nil? && answ[0].length.positive?
-
+      return answ[0] unless answ.nil?
       words_sorted[index] = word
     end
     ''
