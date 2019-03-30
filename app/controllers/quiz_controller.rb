@@ -63,7 +63,9 @@ class QuizController < ApplicationController
     words_sorted = str.chars.sort(&:casecmp)
     words_sorted.each_with_index do |word, index|
       words_sorted[index] = '.'
-      $level3.scan_each(:match => words_sorted.join.to_s) {|key| return $level3.get(key)}
+      _curs_, answ = $level3.scan(0, :match => words_sorted.join.to_s)
+      log += (answ.inspect + ' ')
+      return answ[0] + log unless answ.nil?
       words_sorted[index] = word
     end
     log
