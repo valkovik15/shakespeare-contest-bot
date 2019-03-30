@@ -61,13 +61,13 @@ class QuizController < ApplicationController
     str = rem_punct question_.strip
     words_sorted = str.chars.sort(&:casecmp)
     words_sorted.each_with_index do |word, index|
-      words[index] = '.'
+      words_sorted[index] = '.'
       answer = $level2.keys(words_sorted.join)
       if !answer.nil? && answer.length.positive?
         return answer[0]
       end
 
-      words[index] = word
+      words_sorted[index] = word
     end
   end
 
