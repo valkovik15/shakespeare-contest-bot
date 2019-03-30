@@ -62,7 +62,7 @@ class QuizController < ApplicationController
     words_sorted = str.chars.sort(&:casecmp)
     words_sorted.each_with_index do |word, index|
       words[index] = '.'
-      answer = $level3.keys(words_sorted.join)
+      answer = $level2.keys(words_sorted.join)
       if !answer.nil? && answer.length.positive?
         return answer[0]
       end
@@ -122,7 +122,7 @@ class QuizController < ApplicationController
     when 6, 7
       str = rem_punct question_.strip
       str_sorted = str.chars.sort(&:casecmp).join
-      answer = $level3.get str_sorted
+      answer = $level2.get str_sorted
     when 8
       answer = level_8 question_
 
