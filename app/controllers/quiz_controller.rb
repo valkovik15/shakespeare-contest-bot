@@ -57,15 +57,13 @@ class QuizController < ApplicationController
     ''
   end
 
-  def level_8 question_
+  def level_8 (question_)
     str = rem_punct question_.strip
     words_sorted = str.chars.sort(&:casecmp)
     words_sorted.each_with_index do |word, index|
       words_sorted[index] = '.'
-      answer = $level2.keys(words_sorted.join)
-      if !answer.nil? && answer.length.positive?
-        return answer
-      end
+      _curs_, answ=$level3.scan(0, :match=>words_sorted.join.to_s)
+      return answ[0] if !answ.nil? && answ[0].length.positive?
 
       words_sorted[index] = word
     end
@@ -123,7 +121,7 @@ class QuizController < ApplicationController
     when 6, 7
       str = rem_punct question_.strip
       str_sorted = str.chars.sort(&:casecmp).join
-      answer = $level2.get str_sorted
+      answer = $level3.get str_sorted
     when 8
       answer = level_8 question_
 
