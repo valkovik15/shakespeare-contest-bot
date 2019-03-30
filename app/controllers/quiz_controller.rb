@@ -1,5 +1,6 @@
 class QuizController < ApplicationController
   skip_before_action :verify_authenticity_token
+  @letters = [*('a'..'z'), *('A'..'Z')]
 
   def level_1 question_
     answer = $level1.get(question_)
@@ -59,16 +60,22 @@ class QuizController < ApplicationController
 
   def level_8 (question_)
     str = rem_punct question_.strip
-    log = ""
+    lastc = 'z'
     words_sorted = str.chars.sort(&:casecmp)
     words_sorted.each_with_index do |word, index|
-      words_sorted[index] = '.'
-      _curs_, answ = $level3.scan(0, :match => words_sorted.join.to_s)
-      log += (answ.inspect + ' ')
-      return answ[0] + log unless answ.nil?
+      if lastc != word
+        @letters.each do |replacement|
+          words_sorted[index] = replacement
+          temp = words_sorted.sort(&:casecmp)
+          ans = $level3.get(temp)
+          return ans unless ans.nil?
+        end
+      end
+      lastc = word
       words_sorted[index] = word
+
     end
-    log
+    ''
   end
 
   def index
