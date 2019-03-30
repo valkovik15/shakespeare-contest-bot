@@ -33,7 +33,7 @@ set :puma_init_active_record, true # Change to false when not using ActiveRecord
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/database.yml}
 set :linked_files, %w{config/local_env.yml}
-set :linked_files, %w{environments/production.rb}
+set :linked_files, %w{config/environments/production.rb}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :puma do
