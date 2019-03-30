@@ -66,7 +66,7 @@ class QuizController < ApplicationController
       if lastc != word
         letters.each do |replacement|
           words_sorted[index] = replacement
-          temp = words_sorted.sort(&:casecmp)
+          temp = words_sorted.sort(&:casecmp).join
           ans = $level3.get(temp)
           return ans unless ans.nil?
         end
