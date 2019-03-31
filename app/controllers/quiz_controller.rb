@@ -1,3 +1,4 @@
+require 'redis-asm'
 class QuizController < ApplicationController
   skip_before_action :verify_authenticity_token
 
@@ -59,41 +60,12 @@ class QuizController < ApplicationController
 
   def level_8 (question_)
     str = rem_punct question_.strip
+
     lastc = 'z'
     letters = [*('a'..'z'), *('A'..'Z')]
     words_sorted = str.chars.sort(&:casecmp)
-    words_sorted.each_with_index do |word, index___|
-      queries = []
-      if lastc != word and letters.include? word
-        words_sorted.delete_at index___
-        letters.each do |replacement|
-          insert = words_sorted.bsearch_index {|x| (x <=> replacement) == 1}
-
-          if insert.nil?
-            insert = words_sorted.length
-            words_sorted.push replacement
-          else
-
-            words_sorted.insert insert, replacement
-
-          end
-
-          queries.push(words_sorted.join)
-          words_sorted.delete_at insert
-
-        end
-      end
-      res = $level3.pipelined do
-        queries.each do |x|
-          $level3.get(x)
-        end
-      end
-      return res[0] if res.compact.length.positive?
-
-      lastc = word
-      words_sorted[index___] = word
-    end
-    ''
+    asm = Redis::Asm.new($level3)
+    asm.class.to_s
   end
 
   def index
@@ -102,7 +74,6 @@ class QuizController < ApplicationController
     level_ = params['level'].to_i
     task_id_ = params['id']
     question_ = params['question']
-    Input.new('task_id' => task_id_, 'question' => question_, 'level' => level_).save
     case level_
     when 1
       answer = level_1 question_
