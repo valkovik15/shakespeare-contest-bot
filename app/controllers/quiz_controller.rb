@@ -50,7 +50,7 @@ FROM
 WHERE
     cypher REGEXP '^#{words_sorted.join}'
 HEREDOC
-        res = $level8.query(quer).to_a
+        res = $level8.query(quer, :async => true).to_a
         if (res.length.positive?)
           return res[0]
         end
