@@ -67,7 +67,7 @@ class QuizController < ApplicationController
       if lastc != word and letters.include? word
         words_sorted.delete_at index___
         letters.each do |replacement|
-          insert = words_sorted.bsearch_index{ |x| x >= replacement }
+          insert = words_sorted.bsearch_index {|x| (x <=> replacement) == 1}
           words_sorted.insert insert, replacement
           queries.push(words_sorted.join)
           words_sorted.delete_at insert
