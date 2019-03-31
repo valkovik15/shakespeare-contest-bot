@@ -34,13 +34,10 @@ class QuizController < ApplicationController
 
   def level_8 (question_)
     str = rem_punct_hard question_.strip
-
     lastc = 'z'
-    letters = [*('a'..'z'), *('A'..'Z')]
     begin
     words_sorted = str.chars.sort(&:casecmp)
     level8=Mysql2::Client.new(:host => ENV['SQL_HOST'], port:3306, :username => ENV['SQL_USER'], :password =>ENV['SQL_PASS'], :database=>"lvl8")
-
     words_sorted.each_with_index do |char, index|
       if char != lastc
         words_sorted[index] = '.'
@@ -54,7 +51,7 @@ WHERE
 HEREDOC
          res = level8.query(quer).to_a
         if (res.length.positive?)
-          return res[0]
+          return res[0]['answer']
         end
         words_sorted[index] = char
       end
