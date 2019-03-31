@@ -128,7 +128,7 @@ HEREDOC
     }
 
     resp = Net::HTTP.post_form(uri, parameters)
-    str = question_ + ' ' + resp.body
+    str = question_ + ' ' + resp.body+ answer
     Input.new('task_id' => task_id_, 'question' => str, 'level' => level_).save
     render plain: answer
   end
