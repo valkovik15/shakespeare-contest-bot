@@ -59,7 +59,7 @@ HEREDOC
     end
     ' '
     rescue Exception => e
-    return e
+    return e.to_s
     end
   end
 
