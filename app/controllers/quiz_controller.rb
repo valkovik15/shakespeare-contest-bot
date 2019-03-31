@@ -37,6 +37,7 @@ class QuizController < ApplicationController
 
     lastc = 'z'
     letters = [*('a'..'z'), *('A'..'Z')]
+    begin
     words_sorted = str.chars.sort(&:casecmp)
     words_sorted.each_with_index do |char, index|
       if char != lastc
@@ -57,6 +58,9 @@ HEREDOC
       end
     end
     ' '
+    rescue Exception => e
+    return e
+    end
   end
 
   def index
