@@ -39,6 +39,8 @@ class QuizController < ApplicationController
     letters = [*('a'..'z'), *('A'..'Z')]
     begin
     words_sorted = str.chars.sort(&:casecmp)
+    level8=Mysql2::Client.new(:host => ENV['SQL_HOST'], port:3306, :username => ENV['SQL_USER'], :password =>ENV['SQL_PASS'], :database=>"lvl8")
+
     words_sorted.each_with_index do |char, index|
       if char != lastc
         words_sorted[index] = '.'
@@ -50,7 +52,7 @@ FROM
 WHERE
     cypher REGEXP '^#{words_sorted.join}'
 HEREDOC
-        res = $level8.query(quer).to_a
+         res = level8.query(quer).to_a
         if (res.length.positive?)
           return res[0]
         end

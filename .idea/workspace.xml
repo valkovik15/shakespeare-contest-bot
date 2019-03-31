@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e7e7c5d4-3c5f-43ae-b900-fd1a1c092590" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app/controllers/quiz_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/quiz_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/initializers/my_init.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/my_init.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -25,8 +26,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/quiz_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+            <state relative-caret-position="33">
+              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
@@ -52,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/initializers/my_init.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="185" selection-start-line="4" selection-start-column="185" selection-end-line="4" selection-end-column="185" />
+            <state relative-caret-position="45">
+              <caret line="3" column="90" selection-start-line="3" selection-start-column="90" selection-end-line="3" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -144,8 +145,8 @@
       <find>Thread.new</find>
       <find>puma</find>
       <find>typho</find>
-      <find>res</find>
       <find>mysql2</find>
+      <find>res</find>
     </findStrings>
     <replaceStrings>
       <replace>valkovik</replace>
@@ -424,12 +425,12 @@
       <workItem from="1553982978686" duration="11857000" />
       <workItem from="1554013093305" duration="3874000" />
       <workItem from="1554047302952" duration="4250000" />
-      <workItem from="1554060455208" duration="5971000" />
+      <workItem from="1554060455208" duration="6320000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79217000" />
+    <option name="totallyTimeSpent" value="79566000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -637,15 +638,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/my_init.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="185" selection-start-line="4" selection-start-column="185" selection-end-line="4" selection-end-column="185" />
+        <state relative-caret-position="45">
+          <caret line="3" column="90" selection-start-line="3" selection-start-column="90" selection-end-line="3" selection-end-column="90" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/quiz_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+        <state relative-caret-position="33">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
         </state>
       </provider>
     </entry>
