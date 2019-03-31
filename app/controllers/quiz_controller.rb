@@ -74,9 +74,9 @@ class QuizController < ApplicationController
 
         end
       end
-      res = $redis3.pipelined do
+      res = $level3.pipelined do
         queries.each do |x|
-          $redis3.get(x)
+          $level3.get(x)
         end
       end
       return res[0] if res.compact.length.positive?
