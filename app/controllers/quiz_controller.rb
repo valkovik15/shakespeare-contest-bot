@@ -1,4 +1,4 @@
-require 'redis-asm'
+
 class QuizController < ApplicationController
   skip_before_action :verify_authenticity_token
 
@@ -64,8 +64,7 @@ class QuizController < ApplicationController
     lastc = 'z'
     letters = [*('a'..'z'), *('A'..'Z')]
     words_sorted = str.chars.sort(&:casecmp)
-    asm = Redis::Asm.new($level3)
-    asm.class.to_s
+    ' '
   end
 
   def index
