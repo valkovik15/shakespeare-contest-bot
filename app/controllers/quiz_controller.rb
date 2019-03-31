@@ -1,39 +1,13 @@
-
+require 'levenshtein'
 class QuizController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+  def rem_punct_hard str
+    str.gsub(/[^A-Za-z]/i, '')
+  end
+
   def level_1 question_
     answer = $level1.get(question_)
-    if answer.nil?
-      answer = $level1.get(question_ + '.')
-    else
-      return answer
-    end
-    if answer.nil?
-      answer = $level1.get(question_ + '.')
-    else
-      return answer
-    end
-    if answer.nil?
-      answer = $level1.get(question_ + '!')
-    else
-      return answer
-    end
-    if answer.nil?
-      answer = $level1.get(question_ + '?')
-    else
-      return answer
-    end
-    if answer.nil?
-      answer = $level1.get(question_ + ';')
-    else
-      return answer
-    end
-    if answer.nil?
-      answer = $level1.get(question_ + ':')
-    else
-      return answer
-    end
     if answer.nil?
       last_chance = rem_punct question_
       answer = $level1.get(last_chance)
@@ -59,11 +33,29 @@ class QuizController < ApplicationController
   end
 
   def level_8 (question_)
-    str = rem_punct question_.strip
+    str = rem_punct_hard question_.strip
 
     lastc = 'z'
     letters = [*('a'..'z'), *('A'..'Z')]
     words_sorted = str.chars.sort(&:casecmp)
+    words_sorted.each_with_index do |char, index|
+      if char != lastc
+        words_sorted[index] = '.'
+        quer = <<HEREDOC
+SELECT 
+    answer
+FROM
+    posts
+WHERE
+    cypher REGEXP '^#{words_sorted.join}'
+HEREDOC
+        res = $level8.query(quer).to_a
+        if (res.length.positive?)
+          return res[0]
+        end
+        words_sorted[index] = char
+      end
+    end
     ' '
   end
 
@@ -117,7 +109,7 @@ class QuizController < ApplicationController
       answer = level_5 question_
 
     when 6, 7
-      str = rem_punct question_.strip
+      str = rem_punct_hard question_.strip
       str_sorted = str.chars.sort(&:casecmp).join
       answer = $level3.get str_sorted
     when 8
