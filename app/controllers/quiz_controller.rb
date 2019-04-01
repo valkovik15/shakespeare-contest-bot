@@ -45,8 +45,7 @@ FROM
 WHERE
     length=#{words_sorted.length}
 HEREDOC
-      res = level8.query(quer).to_a
-      return res.class.to_s + ' ' + res.inspect
+      res = level8.query(quer)
       res.each do |element|
         dist = Levenshtein.distance words_sorted, element['cypher']
         return element['answer'] if dist == 1
