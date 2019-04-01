@@ -34,33 +34,29 @@ class QuizController < ApplicationController
 
   def level_8 (question_)
     str = rem_punct_hard question_.strip
-    lastc = 'z'
     begin
-    words_sorted = str.chars.sort(&:casecmp)
-    level8=Mysql2::Client.new(:host => ENV['SQL_HOST'], port:3306, :username => ENV['SQL_USER'], :password =>ENV['SQL_PASS'], :database=>"lvl8")
-    words_sorted.each_with_index do |char, index|
-      if char != lastc
-        words_sorted[index] = '.'
-        quer = <<HEREDOC
+      words_sorted = str.chars.sort(&:casecmp).join
+      level8 = Mysql2::Client.new(:host => ENV['SQL_HOST'], port: 3306, :username => ENV['SQL_USER'], :password => ENV['SQL_PASS'], :database => "lvl8")
+      quer = <<HEREDOC
 SELECT 
-    answer
+    *
 FROM
-    posts
+    dictionary
 WHERE
-    cypher REGEXP '^#{words_sorted.join}'
+    length=#{words_sorted.length}'
 HEREDOC
-         res = level8.query(quer).to_a
-        if (res.length.positive?)
-          return res[0]['answer']
-        end
-        words_sorted[index] = char
+      res = level8.query(quer).to_a
+      res.each do |element|
+        dist=Levenshtein.distance words_sorted, res['cypher']
+        return res['answer'] if dist==1
       end
+      words_sorted[index] = char
+    rescue Exception => e
+      return e.to_s
     end
     ' '
-    rescue Exception => e
-    return e.to_s
-    end
   end
+
 
   def index
 
@@ -127,7 +123,7 @@ HEREDOC
     }
 
     resp = Net::HTTP.post_form(uri, parameters)
-    str = question_ + ' ' + resp.body+ answer
+    str = question_ + ' ' + resp.body + answer
     Input.new('task_id' => task_id_, 'question' => str, 'level' => level_).save
     render plain: answer
   end
@@ -135,4 +131,5 @@ HEREDOC
   def rem_punct str
     str.gsub(/[^A-Za-z0-9\s]/i, '')
   end
+
 end
