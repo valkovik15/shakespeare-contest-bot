@@ -46,10 +46,11 @@ class QuizController < ApplicationController
           check_n = rem_punct check
           check_arr = check_n.split(' ')
           question_arr = str.split(' ')
-          flag = true
           if (check_arr.length == question_arr.length)
-            (0..num - 1).each {|ind| flag = false if check_arr[ind].length != question_arr[ind].length}
-            return check if flag
+            temp_str = check
+            check_arr.map {|x| x.length}
+            question_arr.map {|y| y.length}
+            return check if check_arr == question_arr
           end
 
         end
