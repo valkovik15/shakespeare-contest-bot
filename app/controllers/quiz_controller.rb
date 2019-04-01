@@ -45,18 +45,18 @@ class QuizController < ApplicationController
           check_arr = check_n.split(' ')
           question_arr = str.split(' ')
           flag = true
-          return check + ' ' + dist.inspect + ' ' + check_arr.inspect + ' ' + question_arr.inspectif check_arr.length == question_arr.length
+          if check_arr.length == question_arr.length
+              return check + ' ' + dist.inspect + ' ' + check_arr.inspect + ' ' + question_arr.inspect
+          end
+
+
         end
-
-
       end
     rescue Exception => e
       return e.to_s
     end
-
+    ' '
   end
-
-  ' '
 
 
   def index
