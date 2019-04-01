@@ -47,8 +47,8 @@ WHERE
 HEREDOC
       res = level8.query(quer)
       res.each do |element|
-        dist = Levenshtein.distance words_sorted, element['cypher'].chars
-        return element['answer'] if dist == 1
+        dist = words_sorted - element['cypher'].chars
+        return element['answer'] if dist.length == 1
       end
       words_sorted[index] = char
     rescue Exception => e
