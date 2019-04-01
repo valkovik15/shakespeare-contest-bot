@@ -25,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/quiz_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="59" column="7" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+            <state relative-caret-position="374">
+              <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -116,7 +116,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>deploy</find>
       <find>valkovik</find>
       <find>sockets</find>
       <find>appname</find>
@@ -146,6 +145,7 @@
       <find>mysql2</find>
       <find>hard</find>
       <find>level_8</find>
+      <find>rem_punct</find>
     </findStrings>
     <replaceStrings>
       <replace>valkovik</replace>
@@ -424,12 +424,12 @@
       <workItem from="1553982978686" duration="11857000" />
       <workItem from="1554013093305" duration="3874000" />
       <workItem from="1554047302952" duration="4250000" />
-      <workItem from="1554060455208" duration="19879000" />
+      <workItem from="1554060455208" duration="20033000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93125000" />
+    <option name="totallyTimeSpent" value="93279000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -644,8 +644,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/quiz_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="59" column="7" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+        <state relative-caret-position="374">
+          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
         </state>
       </provider>
     </entry>
