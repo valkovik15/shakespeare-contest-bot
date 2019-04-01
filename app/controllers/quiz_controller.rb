@@ -33,7 +33,7 @@ class QuizController < ApplicationController
   end
 
   def level_8 (question_)
-    temp_str=""
+    temp_str = ""
     str = rem_punct question_.strip
     num = str.split(' ').length
     begin
@@ -48,8 +48,7 @@ class QuizController < ApplicationController
           question_arr = str.split(' ')
           flag = true
           if (check_arr.length == question_arr.length)
-            temp_str=check
-            (0..num-1).each {|ind| flag = false if check_arr[ind].length != question_arr[ind].length}
+            (0..num - 1).each {|ind| flag = false if check_arr[ind].length != question_arr[ind].length}
             return check if flag
           end
 
