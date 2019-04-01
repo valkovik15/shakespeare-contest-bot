@@ -48,7 +48,7 @@ class QuizController < ApplicationController
           if check_arr.length >= question_arr.length
             question_arr.each_index {|ind| flag = (check_arr[ind].length == question_arr[ind].length) or flag}
             if flag
-              return +check + ' ' + dist.inspect
+              return +check + ' ' + dist.inspect+' '+check_arr.inspect+' '+question_arr.inspect
             end
           end
 
