@@ -35,14 +35,23 @@ class QuizController < ApplicationController
   def level_8 (question_)
     temp_str = ""
     str = rem_punct question_.strip
+    num = str.split(' ').length
     begin
       words_sorted = str.chars.sort(&:casecmp)
       res = $level8.smembers(words_sorted.length)
       res.each do |element|
         dist = words_sorted - element.chars
         if dist.length == 1
-          return $level3.get(element)
-
+          check = $level3.get(element)
+          check_n = rem_punct check
+          check_arr = check_n.split(' ')
+          question_arr = str.split(' ')
+          if (check_arr.length == question_arr.length)
+            temp_str = check
+            check_arr.map {|x| x.length}
+            question_arr.map {|y| y.length}
+            return check if check_arr == question_arr
+          end
 
         end
       end
