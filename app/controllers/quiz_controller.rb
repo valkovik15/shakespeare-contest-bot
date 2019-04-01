@@ -33,23 +33,16 @@ class QuizController < ApplicationController
   end
 
   def level_8 (question_)
-    str = rem_punct_hard question_.strip
+    str = rem_punct question_.strip
     begin
       words_sorted = str.chars.sort(&:casecmp)
-      quer = <<HEREDOC
-SELECT 
-    *
-FROM
-    dictionary
-WHERE
-    length=#{words_sorted.length}
-HEREDOC
-      res = $level8.query(quer)
+      res = $level8.smembers(words_sorted.length)
       res.each do |element|
-        dist = words_sorted - element['CYPHER'].chars
-        return element['ANSWER'] if dist.length == 1
+        dist = words_sorted - element.chars
+        if dist.length == 1
+          return $level3.get(element)
+        end
       end
-      words_sorted[index] = char
     rescue Exception => e
       return e.to_s
     end
@@ -124,7 +117,6 @@ HEREDOC
     resp = Net::HTTP.post_form(uri, parameters)
     str = question_ + ' ' + resp.body + answer
     Input.new('task_id' => task_id_, 'question' => str, 'level' => level_).save
-    render plain: answer
   end
 
   def rem_punct str
