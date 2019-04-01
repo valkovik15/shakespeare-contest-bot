@@ -44,11 +44,11 @@ class QuizController < ApplicationController
           check_n = rem_punct check
           check_arr = check_n.split(' ')
           question_arr = str.split(' ')
-          flag = false
+          flag = true
           if check_arr.length >= question_arr.length
-            question_arr.each_index {|ind| flag = (check_arr[ind].length == question_arr[ind].length) or flag}
+            question_arr.each_with_index {|word, at| flag = (check_arr[ind].length == question_arr) and flag}
             if flag
-              return +check + ' ' + dist.inspect+' '+check_arr.inspect+' '+question_arr.inspect
+              return +check + ' ' + dist.inspect + ' ' + check_arr.inspect + ' ' + question_arr.inspect
             end
           end
 
