@@ -44,12 +44,9 @@ class QuizController < ApplicationController
           check_n = rem_punct check
           check_arr = check_n.split(' ')
           question_arr = str.split(' ')
-          flag = true
           if check_arr.length == question_arr.length
-              return check + ' ' + dist.inspect + ' ' + check_arr.inspect + ' ' + question_arr.inspect
+            return check + ' ' + dist.inspect + ' ' + check_arr.inspect + ' ' + question_arr.inspect
           end
-
-
         end
       end
     rescue Exception => e
