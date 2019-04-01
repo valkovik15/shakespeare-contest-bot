@@ -43,14 +43,8 @@ class QuizController < ApplicationController
         dist = words_sorted - element.chars
         if dist.length == 1
           check = $level3.get(element)
-          check_n = rem_punct check
-          check_arr = check_n.split(' ')
-          question_arr = str.split(' ')
-          if (check_arr.length == question_arr.length)
-            temp_str = check
-            check_arr.map {|x| x.length}
-            question_arr.map {|y| y.length}
-            return check if check_arr == question_arr
+
+            return check
           end
 
         end
