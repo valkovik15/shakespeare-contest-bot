@@ -43,7 +43,7 @@ SELECT
 FROM
     dictionary
 WHERE
-    length=#{words_sorted.length}'
+    length=#{words_sorted.length}
 HEREDOC
       res = level8.query(quer).to_a
       res.each do |element|
