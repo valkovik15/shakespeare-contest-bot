@@ -52,7 +52,7 @@ HEREDOC
       end
       words_sorted[index] = char
     rescue Exception => e
-      return e.backtrace.to_s
+      return e.to_s
     end
     ' '
   end
