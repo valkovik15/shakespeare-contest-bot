@@ -42,7 +42,7 @@ class QuizController < ApplicationController
         if dist.length == 1
           check = $level3.get(element)
           check_arr = check.split(' ')
-          question_arr = question_.split(' ')
+          question_arr = str.split(' ')
           flag = false
           question_arr.each_index {|ind| flag = check_arr[ind].length == question_arr[ind].length or flag}
           if flag
