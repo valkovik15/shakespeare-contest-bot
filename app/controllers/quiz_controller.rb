@@ -44,7 +44,7 @@ class QuizController < ApplicationController
           check_n = rem_punct check
           check_arr = check_n.split(' ')
           question_arr = str.split(' ')
-          if check_arr.length == question_arr.length
+          if (check_arr.length == question_arr.length)&&(check_arr[0].length==question_arr[0].length)
             return check
           end
         end
