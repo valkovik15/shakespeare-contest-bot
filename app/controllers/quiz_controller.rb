@@ -48,7 +48,9 @@ class QuizController < ApplicationController
           question_arr = str.split(' ')
           if (check_arr.length == question_arr.length)
             temp_str = check
-            return check if check_arr[0].length == question_arr[0].length
+            check_arr.map {|x| x.length}
+            question_arr.map {|y| y.length}
+            return check if check_arr == question_arr
           end
 
         end
