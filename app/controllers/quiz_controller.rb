@@ -36,11 +36,12 @@ class QuizController < ApplicationController
     temp_str = ""
     str = rem_punct question_.strip
     num = str.split(' ').length
+    to_comp = words_sorted.join.each_char.with_index.to_a
     begin
       words_sorted = str.chars.sort(&:casecmp)
       res = $level8.smembers(words_sorted.length)
       res.each do |element|
-        dist = words_sorted.join.each_char.with_index.to_a - element.each_char.with_index.to_a
+        dist = to_comp - element.each_char.with_index.to_a
         if dist.length == 1
           check = $level3.get(element)
 
