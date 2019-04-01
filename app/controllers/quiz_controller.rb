@@ -48,7 +48,9 @@ class QuizController < ApplicationController
           flag=true
           if (check_arr.length == question_arr.length)
             (0..num).each{|ind| flag=false if check_arr[ind].length!=question_arr[ind].length}
+            return check if flag
           end
+
           end
         end
       end
