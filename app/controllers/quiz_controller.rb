@@ -44,16 +44,16 @@ class QuizController < ApplicationController
         if dist.length == 1
           check = $level3.get(element)
 
-            return check
-          end
-
+          return check
         end
-      end
-    rescue Exception => e
-      return e.to_s
-    end
 
+      end
+    end
+  rescue Exception => e
+    return e.to_s
     temp_str
+
+
   end
 
 
