@@ -47,9 +47,8 @@ WHERE
 HEREDOC
       res = level8.query(quer)
       res.each do |element|
-        return element.inspect
-        dist = words_sorted - element['cypher'].chars
-        return element['answer'] if dist.length == 1
+        dist = words_sorted - element['CYPHER'].chars
+        return element['ANSWER'] if dist.length == 1
       end
       words_sorted[index] = char
     rescue Exception => e
