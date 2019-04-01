@@ -40,7 +40,7 @@ class QuizController < ApplicationController
       words_sorted = str.chars.sort(&:casecmp)
       res = $level8.smembers(words_sorted.length)
       res.each do |element|
-        dist = words_sorted.join.chars.with_index - element.chars.with_index
+        dist = words_sorted.join.each_char.with_index.to_a - element.each_char.with_index.to_a
         if dist.length == 1
           check = $level3.get(element)
 
