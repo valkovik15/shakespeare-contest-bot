@@ -40,7 +40,11 @@ class QuizController < ApplicationController
       res.each do |element|
         dist = words_sorted - element.chars
         if dist.length == 1
-          return $level3.get(element)+' '+dist.inspect
+          check = $level3.get(element)
+          if check.split(' ').length == question_.split(' ').length
+            return +check + ' ' + dist.inspect
+          end
+
         end
       end
     rescue Exception => e
