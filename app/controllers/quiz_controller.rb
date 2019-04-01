@@ -10,11 +10,11 @@ class QuizController < ApplicationController
     answer = $level1.get(question_)
     if answer.nil?
       last_chance = rem_punct question_
-      answer = $level1.get(last_chance)
+      return $level1.get(last_chance.strip)
     else
       return answer
     end
-    $level1.get(last_chance.strip)
+    ''
   end
 
   def level_5(quest)
@@ -106,7 +106,7 @@ class QuizController < ApplicationController
       answer = level_5 question_
 
     when 6, 7
-      str = rem_punct_hard question_.strip
+      str = rem_punct question_.strip
       str_sorted = str.chars.sort(&:casecmp).join
       answer = $level3.get str_sorted
     when 8
