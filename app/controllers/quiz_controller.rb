@@ -34,7 +34,7 @@ class QuizController < ApplicationController
 
   def level_8 (question_)
     str = rem_punct question_.strip
-    num=str.split(' ').length
+    num = str.split(' ').length
     begin
       words_sorted = str.chars.sort(&:casecmp)
       res = $level8.smembers(words_sorted.length)
@@ -45,93 +45,94 @@ class QuizController < ApplicationController
           check_n = rem_punct check
           check_arr = check_n.split(' ')
           question_arr = str.split(' ')
-          flag=true
+          flag = true
           if (check_arr.length == question_arr.length)
-            (0..num).each{|ind| flag=false if check_arr[ind].length!=question_arr[ind].length}
+            (0..num).each {|ind| flag = false if check_arr[ind].length != question_arr[ind].length}
             return check if flag
           end
 
-          end
         end
       end
     rescue Exception => e
       return e.to_s
     end
+
     ' '
   end
 
 
-  def index
 
-    uri = URI("https://shakespeare-contest.rubyroidlabs.com/quiz")
-    level_ = params['level'].to_i
-    task_id_ = params['id']
-    question_ = params['question']
-    case level_
-    when 1
-      answer = level_1 question_
-    when 2
-      last_chance = rem_punct question_
-      answer = $level2.get(last_chance)
-      if answer.nil?
-        answer = $level2.get(last_chance.strip)
-      end
-    when 3
-      strings = question_.split("\n")
-      strings[0] = rem_punct strings[0]
-      strings[1] = rem_punct strings[1]
-      answer1 = $level2.get(strings[0])
-      if answer1.nil?
-        answer1 = $level2.get(strings[0].strip)
-      end
-      answer2 = $level2.get(strings[1])
-      if answer2.nil?
-        answer2 = $level2.get(strings[1].strip)
-      end
-      answer = answer1 + ',' + answer2
-    when 4
-      strings = question_.split("\n")
-      strings[0] = rem_punct strings[0]
-      strings[1] = rem_punct strings[1]
-      strings[2] = rem_punct strings[2]
-      answer1 = $level2.get(strings[0])
-      if answer1.nil?
-        answer1 = $level2.get(strings[0].strip)
-      end
-      answer2 = $level2.get(strings[1])
-      if answer2.nil?
-        answer2 = $level2.get(strings[1].strip)
-      end
-      answer3 = $level2.get(strings[2])
-      if answer3.nil?
-        answer3 = $level2.get(strings[2].strip)
-      end
-      answer = answer1 + ',' + answer2 + ',' + answer3
-    when 5
-      answer = level_5 question_
+def index
 
-    when 6, 7
-      str = rem_punct question_.strip
-      str_sorted = str.chars.sort(&:casecmp).join
-      answer = $level3.get str_sorted
-    when 8
-      answer = level_8 question_
-
-
+  uri = URI("https://shakespeare-contest.rubyroidlabs.com/quiz")
+  level_ = params['level'].to_i
+  task_id_ = params['id']
+  question_ = params['question']
+  case level_
+  when 1
+    answer = level_1 question_
+  when 2
+    last_chance = rem_punct question_
+    answer = $level2.get(last_chance)
+    if answer.nil?
+      answer = $level2.get(last_chance.strip)
     end
-    parameters = {
-        answer: answer,
-        token: 'd77f89c45e2089bf3a721acf0c9edfd2',
-        task_id: task_id_
-    }
+  when 3
+    strings = question_.split("\n")
+    strings[0] = rem_punct strings[0]
+    strings[1] = rem_punct strings[1]
+    answer1 = $level2.get(strings[0])
+    if answer1.nil?
+      answer1 = $level2.get(strings[0].strip)
+    end
+    answer2 = $level2.get(strings[1])
+    if answer2.nil?
+      answer2 = $level2.get(strings[1].strip)
+    end
+    answer = answer1 + ',' + answer2
+  when 4
+    strings = question_.split("\n")
+    strings[0] = rem_punct strings[0]
+    strings[1] = rem_punct strings[1]
+    strings[2] = rem_punct strings[2]
+    answer1 = $level2.get(strings[0])
+    if answer1.nil?
+      answer1 = $level2.get(strings[0].strip)
+    end
+    answer2 = $level2.get(strings[1])
+    if answer2.nil?
+      answer2 = $level2.get(strings[1].strip)
+    end
+    answer3 = $level2.get(strings[2])
+    if answer3.nil?
+      answer3 = $level2.get(strings[2].strip)
+    end
+    answer = answer1 + ',' + answer2 + ',' + answer3
+  when 5
+    answer = level_5 question_
 
-    resp = Net::HTTP.post_form(uri, parameters)
-    str = question_ + ' ' + resp.body + answer
-    Input.new('task_id' => task_id_, 'question' => str, 'level' => level_).save
-  end
+  when 6, 7
+    str = rem_punct question_.strip
+    str_sorted = str.chars.sort(&:casecmp).join
+    answer = $level3.get str_sorted
+  when 8
+    answer = level_8 question_
 
-  def rem_punct str
-    str.gsub(/[^A-Za-z0-9\s]/i, '')
+
   end
+  parameters = {
+      answer: answer,
+      token: 'd77f89c45e2089bf3a721acf0c9edfd2',
+      task_id: task_id_
+  }
+
+  resp = Net::HTTP.post_form(uri, parameters)
+  str = question_ + ' ' + resp.body + answer
+  Input.new('task_id' => task_id_, 'question' => str, 'level' => level_).save
+end
+
+def rem_punct str
+  str.gsub(/[^A-Za-z0-9\s]/i, '')
+end
 
 end
