@@ -34,6 +34,7 @@ class QuizController < ApplicationController
 
   def level_8 (question_)
     str = rem_punct question_.strip
+    num=str.split(' ').length
     begin
       words_sorted = str.chars.sort(&:casecmp)
       res = $level8.smembers(words_sorted.length)
@@ -44,8 +45,10 @@ class QuizController < ApplicationController
           check_n = rem_punct check
           check_arr = check_n.split(' ')
           question_arr = str.split(' ')
-          if (check_arr.length == question_arr.length)&&(check_arr[0].length==question_arr[0].length)
-            return check
+          flag=true
+          if (check_arr.length == question_arr.length)
+            (0..num).each{|ind| flag=false if check_arr[ind].length!=question_arr[ind].length}
+          end
           end
         end
       end
