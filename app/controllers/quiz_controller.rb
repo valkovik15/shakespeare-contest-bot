@@ -46,7 +46,7 @@ class QuizController < ApplicationController
           question_arr = str.split(' ')
           flag = true
           if check_arr.length >= question_arr.length
-            question_arr.each_with_index {|word, at| flag = (check_arr[at].length == word.length) and flag}
+            question_arr.each_with_index {|word, at| flag=false if check_arr[at].length != word.length }
             if flag
               return +check + ' ' + dist.inspect + ' ' + check_arr.inspect + ' ' + question_arr.inspect
             end
