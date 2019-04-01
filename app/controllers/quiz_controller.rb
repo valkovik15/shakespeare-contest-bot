@@ -45,21 +45,18 @@ class QuizController < ApplicationController
           check_arr = check_n.split(' ')
           question_arr = str.split(' ')
           flag = true
-          if check_arr.length >= question_arr.length
-            question_arr.each_with_index {|word, at| flag=false if check_arr[at].length != word.length }
-            if flag
-              return +check + ' ' + dist.inspect + ' ' + check_arr.inspect + ' ' + question_arr.inspect
-            end
-          end
-
-
+          return check + ' ' + dist.inspect + ' ' + check_arr.inspect + ' ' + question_arr.inspectif check_arr.length == question_arr.length
         end
+
+
       end
     rescue Exception => e
       return e.to_s
     end
-    ' '
+
   end
+
+  ' '
 
 
   def index
