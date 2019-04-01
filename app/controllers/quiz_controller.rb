@@ -36,7 +36,6 @@ class QuizController < ApplicationController
     str = rem_punct_hard question_.strip
     begin
       words_sorted = str.chars.sort(&:casecmp)
-      level8 = Mysql2::Client.new(:host => ENV['SQL_HOST'], port: 3306, :username => ENV['SQL_USER'], :password => ENV['SQL_PASS'], :database => "lvl8")
       quer = <<HEREDOC
 SELECT 
     *
@@ -45,7 +44,7 @@ FROM
 WHERE
     length=#{words_sorted.length}
 HEREDOC
-      res = level8.query(quer)
+      res = $level8.query(quer)
       res.each do |element|
         dist = words_sorted - element['CYPHER'].chars
         return element['ANSWER'] if dist.length == 1
