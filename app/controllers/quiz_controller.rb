@@ -35,7 +35,7 @@ class QuizController < ApplicationController
   def level_8 (question_)
     str = rem_punct_hard question_.strip
     begin
-      words_sorted = str.chars.sort(&:casecmp).join
+      words_sorted = str.chars.sort(&:casecmp)
       level8 = Mysql2::Client.new(:host => ENV['SQL_HOST'], port: 3306, :username => ENV['SQL_USER'], :password => ENV['SQL_PASS'], :database => "lvl8")
       quer = <<HEREDOC
 SELECT 
@@ -47,7 +47,7 @@ WHERE
 HEREDOC
       res = level8.query(quer)
       res.each do |element|
-        dist = Levenshtein.distance words_sorted, element['cypher']
+        dist = Levenshtein.distance words_sorted, element['cypher'].chars
         return element['answer'] if dist == 1
       end
       words_sorted[index] = char
